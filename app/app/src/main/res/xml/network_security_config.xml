@@ -4,6 +4,9 @@
         <domain includeSubdomains="true">10.0.2.2</domain>
     </domain-config>
     <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">https://917d-2804-214-91f0-3c92-59fa-72f5-59eb-67f.ngrok-free.app</domain>
+    </domain-config>
+    <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">wecodecorp.com.br</domain>
     </domain-config>
 </network-security-config>

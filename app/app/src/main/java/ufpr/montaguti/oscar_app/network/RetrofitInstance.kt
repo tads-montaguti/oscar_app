@@ -6,7 +6,7 @@ import ufpr.montaguti.oscar_app.network.MovieApiService
 import ufpr.montaguti.oscar_app.network.VoteService
 
 object RetrofitInstance {
-    private val BASE_API = "http://10.0.2.2:3000/"
+    private val BASE_API = "https://917d-2804-214-91f0-3c92-59fa-72f5-59eb-67f.ngrok-free.app/"
 
     val authService: AuthService by lazy {
         Retrofit.Builder()
