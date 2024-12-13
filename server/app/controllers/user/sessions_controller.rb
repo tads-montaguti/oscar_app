@@ -6,11 +6,10 @@ class User::SessionsController < Devise::SessionsController
     if request.format.html?
       super
     else
-      user = User.find_by(email: params[:email])
+      user = User.includes(:vote).find_by(email: params[:email])
 
       if user&.valid_password?(params[:password])
-        sign_in(user)
-        render json: user, status: :ok
+        render json: user.as_json(include: :vote), status: :ok
       else
         render json: { error: "Invalid email or password" }, status: :unauthorized
       end

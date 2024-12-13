@@ -10,6 +10,8 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import ufpr.montaguti.oscar_app.R
+import ufpr.montaguti.oscar_app.ui.movies.MoviesActivity
+import ufpr.montaguti.oscar_app.utils.VoteManager
 
 class HomeActivity : AppCompatActivity() {
 
@@ -21,6 +23,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var buttonLogout: Button
 
     private var userPrefsName: String = "LoggedUser"
+    private var votePrefsName: String = "VoteSubmited"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,15 +45,15 @@ class HomeActivity : AppCompatActivity() {
         editTextToken.setText(token.toString())
 
         buttonVoteMovie.setOnClickListener {
-            Toast.makeText(this, "Votar Filme clicado", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, MoviesActivity::class.java))
         }
 
         buttonVoteDirector.setOnClickListener {
-            Toast.makeText(this, "Votar Diretor clicado", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, DirectorActivity::class.java))
         }
 
         buttonConfirmVote.setOnClickListener {
-            Toast.makeText(this, "Confirmar Voto clicado", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, ConfirmationActivity::class.java))
         }
 
         buttonLogout.setOnClickListener {
@@ -60,8 +63,14 @@ class HomeActivity : AppCompatActivity() {
 
     private fun logout(msg: String) {
         val userPrefs = getSharedPreferences(userPrefsName, Context.MODE_PRIVATE)
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
         userPrefs.edit().clear().apply()
+
+        val prefsVote = getSharedPreferences(votePrefsName, Context.MODE_PRIVATE)
+        prefsVote.edit().clear().apply()
+
+        VoteManager.destroy()
+
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
         startActivity(Intent(this, MainActivity::class.java))
     }
 }

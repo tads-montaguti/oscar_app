@@ -18,6 +18,18 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.ConfirmationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.DirectorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.movies.MovieActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.movies.MoviesActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.HomeActivity"
             android:exported="false" />
         <activity

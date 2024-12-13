@@ -65,7 +65,7 @@ class VotesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def vote_params
-      params.permit(:category, :identifier, :payload, :voting_token)
+      params.permit(:best_movie_id, :best_director_id, :payload, :voting_token)
     end
 
     

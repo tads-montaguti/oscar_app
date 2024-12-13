@@ -9,4 +9,8 @@
 #   end
 
 
-User.create(email: "a@a.com", password: "pokpok", name: "Adriano")
+User.create(email: "a@a.com", password: "pokpok", name: "Usuário A")
+User.create(email: "b@b.com", password: "pokpok", name: "Usuário B")
+User.create(email: "c@c.com", password: "pokpok", name: "Usuário C")
+User.create(email: "d@d.com", password: "pokpok", name: "Usuário D")
+User.create(email: "e@e.com", password: "pokpok", name: "Usuário E")

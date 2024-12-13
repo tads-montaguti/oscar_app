@@ -29,13 +29,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_13_064647) do
 
   create_table "votes", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "category"
-    t.string "identifier"
     t.string "payload"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "best_movie_id"
     t.string "best_director_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_votes_on_user_id", unique: true
   end
 

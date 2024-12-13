@@ -1,0 +1,111 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Voltar" />
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Confirmação de voto"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textAlignment="center" />
+
+    <TableLayout
+        android:id="@+id/voteTable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:stretchColumns="0,1">
+
+
+        <TableRow>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Categoria"
+                android:textSize="18sp"
+                android:background="@drawable/table_border"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Escolhido"
+                android:textSize="18sp"
+                android:background="@drawable/table_border"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/movieCategory"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Filme"
+                android:background="@drawable/table_border"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/movieChosen"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="não selecionado"
+                android:background="@drawable/table_border"
+                android:textSize="16sp" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/directorCategory"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Diretor"
+                android:background="@drawable/table_border"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/directorChosen"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="não selecionado"
+                android:background="@drawable/table_border"
+                android:textSize="16sp" />
+        </TableRow>
+    </TableLayout>
+
+    <EditText
+        android:id="@+id/tokenInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textAlignment="center"
+        android:hint="Informe o Token"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/submitVoteButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Enviar voto"
+        android:enabled="false" />
+</LinearLayout>

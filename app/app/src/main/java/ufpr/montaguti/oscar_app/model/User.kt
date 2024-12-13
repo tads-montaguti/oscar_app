@@ -5,5 +5,6 @@ data class User(
     val name: String,
     val voting_token: Int,
     val email: String,
-    val authentication_token: String
+    val authentication_token: String,
+    val vote: Vote?
 )
