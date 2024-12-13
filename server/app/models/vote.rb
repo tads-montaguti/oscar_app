@@ -3,7 +3,7 @@ class Vote < ApplicationRecord
 
   attr_accessor :voting_token
 
-  validates :user, presence: true
+  validates :user, presence: true, uniqueness: true
   validate :validate_voting_token, on: :create
 
   private

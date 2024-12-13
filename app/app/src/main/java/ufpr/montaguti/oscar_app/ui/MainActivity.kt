@@ -1,8 +1,8 @@
 package ufpr.montaguti.oscar_app.ui
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -20,10 +20,16 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buttonLogin: Button
     private lateinit var editTextEmail: EditText
     private lateinit var editTextSenha: EditText
+    private var userPrefsName: String = "LoggedUser"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val sharedPrefs = getSharedPreferences(userPrefsName, Context.MODE_PRIVATE)
+        val authToken = sharedPrefs.getString("LOGGED_USER_AUTH_TOKEN", null)
+
+        if (authToken != null) loggedIn("Bem-vindo de volta")
 
         editTextEmail = findViewById(R.id.editTextEmail)
         editTextSenha = findViewById(R.id.editTextSenha)
@@ -37,9 +43,18 @@ class MainActivity : AppCompatActivity() {
             RetrofitInstance.authService.login(request).enqueue(object : Callback<User> {
                 override fun onResponse(call: Call<User>, response: Response<User>) {
                     if (response.isSuccessful) {
-                        Toast.makeText(this@MainActivity, "Sucesso", Toast.LENGTH_SHORT).show()
-//                        startActivity(Intent(this@MainActivity, MainActivity::class.java))
-//                        finish()
+                        val user = response.body()
+
+                        if (user != null) {
+                            val sharedPrefs = getSharedPreferences(userPrefsName, Context.MODE_PRIVATE)
+                            val editor = sharedPrefs.edit()
+                            editor.putString("LOGGED_USER_EMAIL", user.email)
+                            editor.putString("LOGGED_USER_AUTH_TOKEN", user.authentication_token)
+                            editor.putInt("LOGGED_USER_VOTING_TOKEN", user.voting_token)
+                            editor.apply()
+
+                            loggedIn("Bem-vindo ${user.name}")
+                        }
                     } else {
                         Toast.makeText(this@MainActivity, "Credenciais inválidas", Toast.LENGTH_SHORT).show()
                     }
@@ -50,5 +65,10 @@ class MainActivity : AppCompatActivity() {
                 }
             })
         }
+    }
+
+    private fun loggedIn(msg: String) {
+        Toast.makeText(this@MainActivity, msg, Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this@MainActivity, HomeActivity::class.java))
     }
 }
